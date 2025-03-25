@@ -1,0 +1,10 @@
+"AddonInfo"
+{
+    "name"             "ArrestMaster"
+    "version"          "1.0.0"
+    "author_name"      "kido"
+    "author_email"     "123zheshko@gmail.com"
+    "author_telegram"  "@kidoweb"
+    "info"             "Современная система арестов для DarkRP"
+    "override"         "0"
+} 

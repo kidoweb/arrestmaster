@@ -1,0 +1,25 @@
+# Garry's Mod specific
+*.gma
+*.cache
+*.bin
+*.bak
+*.swp
+*.swo
+
+# IDE specific
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp 
