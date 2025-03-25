@@ -1,0 +1,45 @@
+name: Build ArrestMaster
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Create addon directory
+      run: mkdir -p addons/arrestmaster
+    
+    - name: Copy files
+      run: |
+        cp -r lua addons/arrestmaster/
+        cp README.md addons/arrestmaster/
+        cp LICENSE addons/arrestmaster/
+    
+    - name: Create addon.txt
+      run: |
+        echo "AddonInfo = {
+          name = \"ArrestMaster\",
+          version = \"1.0.0\",
+          author = \"kidoweb\",
+          description = \"Система арестов для Garry's Mod DarkRP\",
+          url = \"https://github.com/kidoweb/arrestmaster\"
+        }" > addons/arrestmaster/addon.txt
+    
+    - name: Create release archive
+      run: |
+        cd addons
+        zip -r ../arrestmaster.zip arrestmaster/
+    
+    - name: Upload release
+      uses: actions/upload-artifact@v2
+      with:
+        name: arrestmaster
+        path: arrestmaster.zip 
