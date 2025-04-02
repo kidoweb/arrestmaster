@@ -1,0 +1,58 @@
+{
+    "name": "arrestmaster",
+    "version": "1.0.0",
+    "description": "Система арестов для Garry's Mod с мини-играми и системой побега",
+    "author": "Vadim",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/arrestmaster.git"
+    },
+    "bugs": {
+        "url": "https://github.com/yourusername/arrestmaster/issues"
+    },
+    "homepage": "https://github.com/yourusername/arrestmaster#readme",
+    "keywords": [
+        "gmod",
+        "garrysmod",
+        "arrest",
+        "jail",
+        "minigame",
+        "escape"
+    ],
+    "scripts": {
+        "test": "lua tests/run.lua",
+        "lint": "luacheck lua/",
+        "build": "gma pack",
+        "release": "gma pack && gma publish"
+    },
+    "dependencies": {
+        "darkrp": "^2.6.0",
+        "ulx": "^3.70",
+        "ulib": "^2.60"
+    },
+    "devDependencies": {
+        "luacheck": "^0.25.0",
+        "gma": "^1.0.0"
+    },
+    "engines": {
+        "gmod": ">=2013"
+    },
+    "files": [
+        "lua/",
+        "materials/",
+        "sound/",
+        "LICENSE",
+        "README.md"
+    ],
+    "config": {
+        "arrest_time": 300,
+        "max_arrest_time": 3600,
+        "min_arrest_time": 60,
+        "escape_chance": 0.3,
+        "escape_punishment": 300,
+        "minigame_reward": 30,
+        "camera_limit": 10,
+        "log_rotation": true
+    }
+} 
