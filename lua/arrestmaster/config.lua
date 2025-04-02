@@ -15,27 +15,7 @@ ArrestMaster.Config = {
     
     -- Настройки прав доступа
     Access = {
-        -- Группы администраторов
-        AdminGroups = {
-            ["superadmin"] = true,
-            ["admin"] = true,
-            ["Dev Leader"] = true,
-            ["owner"] = true,
-            ["founder"] = true,
-            ["developer"] = true
-        },
-        
-        -- Разрешенные профессии УСБ
-        AllowedJobs = {
-            ["director_usb"] = true,           -- Директор УСБ
-            ["operative_agent"] = true,        -- Оперативный Агент УСБ
-            ["usb_officer"] = true,            -- Офицер УСБ
-            ["specops_usb"] = true,            -- Группа Спец Назначения УСБ
-            ["usb_pilot"] = true,              -- Пилот-Диспетчер УСБ
-            ["prk_usb"] = true,                -- Рекрутированный ПРК УСБ
-            ["medic_usb"] = true,              -- Медэксперт УСБ
-            ["shock_usb"] = true               -- Ударный Солдат УСБ
-        }
+        -- Пустая таблица, так как проверка на группы больше не нужна
     },
     
     -- Настройки интерфейса
@@ -182,16 +162,6 @@ ArrestMaster.Config = {
     
     -- Настройки команд
     Commands = {
-        -- Команды чата
-        ChatCommands = {
-            ["!арест"] = true,      -- Русская версия
-            ["!arrest"] = true,     -- Английская версия
-            ["/арест"] = true,      -- Альтернативная русская версия
-            ["/arrest"] = true,     -- Альтернативная английская версия
-            ["!minigame"] = true,   -- Команда для мини-игр
-            ["/minigame"] = true    -- Альтернативная версия команды мини-игр
-        },
-        
         -- Настройки команд
         UnjailCommand = "arrestmaster_unjail", -- Команда для принудительного освобождения
         AdminOnly = true,           -- Только для администраторов
@@ -352,20 +322,12 @@ ArrestMaster.Config = {
 function ArrestMaster.Config:HasPermission(ply)
     if not IsValid(ply) then return false end
     
-    -- Проверка на админа
-    if self.Security.Restrictions.PreventArrestingAdmins and ply:IsAdmin() then
-        return false
+    -- Проверяем наличие датапада
+    if ply:HasWeapon("datapad") then
+        return true
     end
     
-    -- Проверка на УСБ
-    if self.Security.Restrictions.PreventArrestingUSB then
-        local job = ply:getJobTable()
-        if job and self.Access.AllowedJobs[job.name] then
-            return false
-        end
-    end
-    
-    return true
+    return false
 end
 
 -- Функция для проверки прямой видимости
